@@ -25,7 +25,28 @@ button.addEventListener("click", () => {
     if (currency1 != currency2) {
         convert(currency1, currency2, value);
     } else {
-        swal("Hello world!");
+        let timerInterval
+Swal.fire({
+  title: 'Introduce another currency',
+  html: 'I will close in <b></b> milliseconds.',
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+})
     }
 });
 
