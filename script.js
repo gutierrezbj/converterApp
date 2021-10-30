@@ -25,7 +25,7 @@ button.addEventListener("click", () => {
     if (currency1 != currency2) {
         convert(currency1, currency2, value);
     } else {
-        alert("Choose Different Currencies !!!");
+        swal("Hello world!");
     }
 });
 
